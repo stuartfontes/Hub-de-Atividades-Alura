@@ -1,0 +1,14 @@
+C:\Users\mainj\source\repos\testes\testes\bin\Debug\net9.0\testes.exe
+C:\Users\mainj\source\repos\testes\testes\bin\Debug\net9.0\testes.deps.json
+C:\Users\mainj\source\repos\testes\testes\bin\Debug\net9.0\testes.runtimeconfig.json
+C:\Users\mainj\source\repos\testes\testes\bin\Debug\net9.0\testes.dll
+C:\Users\mainj\source\repos\testes\testes\bin\Debug\net9.0\testes.pdb
+C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\testes.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\testes.AssemblyInfoInputs.cache
+C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\testes.AssemblyInfo.cs
+C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\testes.csproj.CoreCompileInputs.cache
+C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\testes.dll
+C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\refint\testes.dll
+C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\testes.pdb
+C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\testes.genruntimeconfig.cache
+C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\ref\testes.dll
