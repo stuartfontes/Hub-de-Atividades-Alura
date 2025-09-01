@@ -12,3 +12,4 @@ C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\refint\testes.dll
 C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\testes.pdb
 C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\testes.genruntimeconfig.cache
 C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\ref\testes.dll
+C:\Users\mainj\source\repos\testes\testes\obj\Debug\net9.0\testes.sourcelink.json

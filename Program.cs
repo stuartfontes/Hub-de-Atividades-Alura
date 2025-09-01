@@ -23,6 +23,7 @@ void hub()
     {
         case ConsoleKey.D1: Console.WriteLine("\nVocê escolheu a Atividade 1;" +
                                               "\nPara mais informações pressione ENTER\n");
+            
             switch (Console.ReadKey().Key)
             {
                 case ConsoleKey.Enter:
@@ -69,7 +70,7 @@ void hub()
             break;
             
         case ConsoleKey.D2: Console.WriteLine("\nVocê escolheu a Atividade 2;" +
-                                              "\nPara mais informações pressione ENTER");
+                                              "\nPara mais informações pressione ENTER\n");
             switch (Console.ReadKey(intercept:true).Key)
             {
                 case ConsoleKey.Enter:
@@ -84,6 +85,8 @@ void hub()
                             Thread.Sleep(2000);
                             Console.Clear();
                             menuAtividade2();
+                            List<int> listaDeNumerosSomar = listas2();
+                            somas(listaDeNumerosSomar);
                             break;
                         case ConsoleKey.Backspace:
                             Console.WriteLine("Retornando ao Hub;\nAguarde...");
@@ -122,7 +125,7 @@ void menuAtividade1()
                       " insira seus digitos e posteriormente escolha qual será o número que desja informar na tela\n");
 }
 
-menuAtividade1();
+
 
 
 List<int> listas()
@@ -190,18 +193,17 @@ void posicoes(List<int> numerosAtv1)
     
 }
 
-List<int> listaDeNumeros = listas();
-posicoes(listaDeNumeros);
 
 // Atividade 2 - Criar um programa que calcula as quatro operações de todos os elementos inteiros de uma lista, 
 // utilizando a interpolação de Strings 
 
 void menuAtividade2()
 {
-    
-    Console.WriteLine("Seja bem vindo a Atividade n°2;" +
-                      "\nInsira os números que deseja somar, subtrair, multiplicar e dividir");
+
+    Console.WriteLine("Seja bem vindo a Atividade n°2;\n" +
+                      "A utilização consiste em inserir números que deseja realizar operações matemática;");
 }
+
 
 List<int> listas2()
 {
@@ -222,7 +224,5 @@ void somas(List<int> numerosAtv2)
     
 
 }
-List<int> listaDeNumerosSomar = listas2();
-somas(listaDeNumerosSomar);
-menuAtividade2();
+
 
