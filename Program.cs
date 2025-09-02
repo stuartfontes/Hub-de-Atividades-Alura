@@ -1,18 +1,25 @@
 ﻿
-void MenuGeral()
+(string linkedin, string gitHub) LNKGTH()
 
 {
     string linkedin = $"https://www.linkedin.com/in/mauricio-stuart-fontes-83b45318a";
     string gitHub = $"https://github.com/stuartfontes";
+    return (linkedin, gitHub);
+}
+void MenuGeral(){
 Console.WriteLine(@"
 █░█ █░█ █▄▄   █▀▄ █▀▀   ▄▀█ ▀█▀ █ █░█ █ █▀▄ ▄▀█ █▀▄ █▀▀ █▀
 █▀█ █▄█ █▄█   █▄▀ ██▄   █▀█ ░█░ █ ▀▄▀ █ █▄▀ █▀█ █▄▀ ██▄ ▄█");
 
-    Console.WriteLine("\nEsse é o menu geral de atividades da Alura\n" +
-                      "Foram realizadas por mim e transformadas em um Hub para melhor visualição\n" +
-                      "Acesse as redes;\n" +
-                      $"Linkedin: {linkedin}\n" +
+Console.WriteLine("\nEsse é o menu geral de atividades da Alura\n" +
+                  "Foram realizadas por mim e transformadas em um Hub para melhor visualição\n" +
+                  "Acesse as redes;\n");
+(string linkedin, string gitHub) = LNKGTH(); 
+    Console.WriteLine($"Linkedin: {linkedin}\n" +
                       $"GitHub: {gitHub}\n");
+    
+    
+ 
 }
 
 void hub()
@@ -22,7 +29,7 @@ void hub()
 
     switch (Console.ReadKey(intercept: true).Key)
     {
-        case ConsoleKey.D1: Console.WriteLine("\nVocê escolheu a Atividade 1;" +
+        case ConsoleKey.D1: Console.WriteLine("Você escolheu a Atividade 1;" +
                                               "\nPara mais informações pressione ENTER\n");
             
             switch (Console.ReadKey().Key)
@@ -40,7 +47,7 @@ void hub()
                             Thread.Sleep(2000);
                             Console.Clear();
                             menuAtividade1();
-                            List<int> listaDeNumeros = listas();
+                            List<float> listaDeNumeros = listas();
                             posicoes(listaDeNumeros);
                             break;
                         case ConsoleKey.Backspace:
@@ -70,7 +77,7 @@ void hub()
             }  
             break;
             
-        case ConsoleKey.D2: Console.WriteLine("\nVocê escolheu a Atividade 2;" +
+        case ConsoleKey.D2: Console.WriteLine("Você escolheu a Atividade 2;" +
                                               "\nPara mais informações pressione ENTER\n");
             switch (Console.ReadKey(intercept:true).Key)
             {
@@ -86,8 +93,10 @@ void hub()
                             Thread.Sleep(2000);
                             Console.Clear();
                             menuAtividade2();
-                            List<int> listaDeNumerosSomar = listas2();
-                            contas(listaDeNumerosSomar);
+                            List<float> listaDeNumerosSomar = listas2();
+                            somas(listaDeNumerosSomar);
+                            subtracao(listaDeNumerosSomar);
+                            hubContas();
                             break;
                         case ConsoleKey.Backspace:
                             Console.WriteLine("Retornando ao Hub;\nAguarde...");
@@ -129,15 +138,15 @@ void menuAtividade1()
 
 
 
-List<int> listas()
+List<float> listas()
 {
     Console.Write("Insira sua lista de números, lembre de separa-las por um espaço:\n ");
     string entrada = Console.ReadLine();
     string entradaSemEspaço = entrada.Trim();
         
-    List<int> numerosAtv1 = entradaSemEspaço
+    List<float> numerosAtv1 = entradaSemEspaço
         .Split(" ")
-        .Select(int.Parse)
+        .Select(float.Parse)
         .ToList();
         
 
@@ -148,7 +157,7 @@ List<int> listas()
     
 }
 
-void posicoes(List<int> numerosAtv1)
+void posicoes(List<float> numerosAtv1)
 
 {
     Console.Write("Insira a posição que deseja visualizar na lista: ");
@@ -165,14 +174,13 @@ void posicoes(List<int> numerosAtv1)
                 Thread.Sleep(2000);
                 Console.Clear();
                 menuAtividade1();
-                List<int> listaDeNumeros = listas();
+                List<float> listaDeNumeros = listas();
                 posicoes(listaDeNumeros);
                 break;
             case ConsoleKey.Backspace:
                 Console.WriteLine("Retornando ao Hub;\nAguarde...");
                 Thread.Sleep(2000);
                 Console.Clear();
-                MenuGeral();
                 hub();
                 break;
             default:
@@ -206,14 +214,14 @@ void menuAtividade2()
 }
 
 
-List<int> listas2()
+List<float> listas2()
 
 {
     Console.Write("Insira os números que deseja somar/subtrair/multiplicar e dividir: ");
      string numerosAtv2 = Console.ReadLine().Trim();
-    List<int> dados = numerosAtv2
+    List<float> dados = numerosAtv2
         .Split(" ")
-        .Select(int.Parse)
+        .Select(float.Parse)
         .ToList();
     Console.WriteLine("Você digitou os seguintes números: "+string.Join(" ",dados)); 
         Thread.Sleep(2000);
@@ -232,26 +240,26 @@ void hubContas()
     Console.WriteLine("Para Divisão pressione 4;");
     Console.WriteLine("Para Sair pressione -1;\n");
 }
-void contas(List<int> numerosAtv2)
+void somas(List<float> numerosAtv2)
 {
 
-    
- ConsoleKeyInfo entradaAtv2 = Console.ReadKey(intercept: true);
+ ConsoleKeyInfo entrada1Atv2 = Console.ReadKey(intercept: true);
 
-    switch (entradaAtv2.Key)
+    switch (entrada1Atv2.Key)
     {
         case ConsoleKey.D1:
             Console.WriteLine("Opção desejada: Somar\n");
             Thread.Sleep(2000);
-            Console.Write("Para prosseguir pressione ENTER");
+            Console.Write("Para prosseguir pressione ENTER;\n" +
+                          "Para retornar pressione ao Hub de equações pressione BACKSPACE;\n");
             switch (Console.ReadKey(intercept: true).Key)
             {
                 case ConsoleKey.Enter:
                     
                     Console.Clear();
-                    int somas = (numerosAtv2).Sum();
+                    float somas = (numerosAtv2).Sum();
                     Console.WriteLine($"O resultado da operação escolhida é: {somas}\n");
-                    Thread.Sleep(2000);
+                    Thread.Sleep(5000);
                     Console.Clear();
                     Console.WriteLine("Para retornar ao Hub de equações pressione ENTER;\n" +
                                       "Para retornar ao Hub Principal pressione BACKSPACE;\n" +
@@ -259,19 +267,76 @@ void contas(List<int> numerosAtv2)
                     switch (Console.ReadKey(intercept: true).Key)
                     {
                         case ConsoleKey.Enter:
+                            Console.Write("Retornando ao Hub de equações;\nAguarde...\n");
                             Thread.Sleep(2000);
                             Console.Clear();
                             hubContas();
+                            break;
+                        
+                        case ConsoleKey.Backspace:
+                            Console.WriteLine("Retornando ao Hub Principal;\nAguarde...");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            hub();
+                            break;
+                        case ConsoleKey.Q:
+                            (string linkedin, string gitHub) = LNKGTH();
+                            Console.WriteLine("Encerrando o programa;\nAguarde...");
+                            Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
+                            Console.WriteLine($"{linkedin}");
+                            Console.WriteLine($"{gitHub}");
+                            Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
                             Console.ReadKey(intercept: true);
                             break;
-                            
                     }
-                    
+                    break;
+                
+                case ConsoleKey.Backspace:  
+                    Console.WriteLine("Retornando ao Hub de equações;\nAguarde...");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    hubContas();
                     break;
             }
             break;
     }
 }
+
+void subtracao(List<float> numerosAtv2)
+{
+    ConsoleKeyInfo entrada2Atv2 = Console.ReadKey(intercept: true);
+
+    switch (entrada2Atv2.Key)
+    {
+        case ConsoleKey.D2:
+            Console.WriteLine("Opção desejada: Subtrair\n");
+            Thread.Sleep(2000);
+            Console.Write("Para prosseguir pressione ENTER\n");
+            switch (Console.ReadKey(intercept: true).Key)
+            {
+                case ConsoleKey.Enter:
+                    float resultadoSubtracao =  numerosAtv2.Aggregate((x, y) => x - y);
+                    Console.Clear();
+                    Console.WriteLine($"O resultado da operação escolhida é: {resultadoSubtracao}\n");
+                    Thread.Sleep(5000);
+                    Console.Clear();
+                    Console.WriteLine("Para retornar ao Hub de equações pressione ENTER;\n" +
+                                      "Para retornar ao Hub Principal pressione BACKSPACE;\n" +
+                                      "Para encerrar pressione Q;\n");
+                    switch (Console.ReadKey(intercept: true).Key)
+                    {
+                        case ConsoleKey.Enter:
+                            Console.ReadKey(intercept: true);
+                            break;
+                    }
+                    break;
+            }
+
+            break;
+    }
+}
+ 
+ 
 
 
 
