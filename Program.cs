@@ -1,4 +1,5 @@
-﻿void MenuGeral()
+﻿
+void MenuGeral()
 
 {
     string linkedin = $"https://www.linkedin.com/in/mauricio-stuart-fontes-83b45318a";
@@ -86,7 +87,7 @@ void hub()
                             Console.Clear();
                             menuAtividade2();
                             List<int> listaDeNumerosSomar = listas2();
-                            somas(listaDeNumerosSomar);
+                            contas(listaDeNumerosSomar);
                             break;
                         case ConsoleKey.Backspace:
                             Console.WriteLine("Retornando ao Hub;\nAguarde...");
@@ -130,7 +131,7 @@ void menuAtividade1()
 
 List<int> listas()
 {
-    Console.Write("Insira sua lista de números, lembre de separa-las por um espaço: ");
+    Console.Write("Insira sua lista de números, lembre de separa-las por um espaço:\n ");
     string entrada = Console.ReadLine();
     string entradaSemEspaço = entrada.Trim();
         
@@ -201,28 +202,76 @@ void menuAtividade2()
 {
 
     Console.WriteLine("Seja bem vindo a Atividade n°2;\n" +
-                      "A utilização consiste em inserir números que deseja realizar operações matemática;");
+                      "A utilização consiste em inserir números que deseja realizar operações matemática;\n");
 }
 
 
 List<int> listas2()
+
 {
-     Console.Write("Insira os números que deseja somar/subtrair/multiplicar e dividir: ");
-     string numerosAtv2 = Console.ReadLine();
+    Console.Write("Insira os números que deseja somar/subtrair/multiplicar e dividir: ");
+     string numerosAtv2 = Console.ReadLine().Trim();
     List<int> dados = numerosAtv2
         .Split(" ")
         .Select(int.Parse)
         .ToList();
     Console.WriteLine("Você digitou os seguintes números: "+string.Join(" ",dados)); 
+        Thread.Sleep(2000);
+        hubContas();
+        
 
     return dados;
 }
 
-void somas(List<int> numerosAtv2)
+void hubContas()
 {
-    Console.WriteLine("Realizando as quatro operações matemáticas dos números introduzidos;\nAguarde...\n");
-    
-
+    Console.WriteLine("Qual operação matemática deseja realizar?;");
+    Console.WriteLine("\nPara Soma pressione 1;");
+    Console.WriteLine("Para Subtração pressione 2;");
+    Console.WriteLine("Para Multiplicação pressione 3;");
+    Console.WriteLine("Para Divisão pressione 4;");
+    Console.WriteLine("Para Sair pressione -1;\n");
 }
+void contas(List<int> numerosAtv2)
+{
+
+    
+ ConsoleKeyInfo entradaAtv2 = Console.ReadKey(intercept: true);
+
+    switch (entradaAtv2.Key)
+    {
+        case ConsoleKey.D1:
+            Console.WriteLine("Opção desejada: Somar\n");
+            Thread.Sleep(2000);
+            Console.Write("Para prosseguir pressione ENTER");
+            switch (Console.ReadKey(intercept: true).Key)
+            {
+                case ConsoleKey.Enter:
+                    
+                    Console.Clear();
+                    int somas = (numerosAtv2).Sum();
+                    Console.WriteLine($"O resultado da operação escolhida é: {somas}\n");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    Console.WriteLine("Para retornar ao Hub de equações pressione ENTER;\n" +
+                                      "Para retornar ao Hub Principal pressione BACKSPACE;\n" +
+                                      "Para encerrar pressione Q;\n");
+                    switch (Console.ReadKey(intercept: true).Key)
+                    {
+                        case ConsoleKey.Enter:
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            hubContas();
+                            Console.ReadKey(intercept: true);
+                            break;
+                            
+                    }
+                    
+                    break;
+            }
+            break;
+    }
+}
+
 
 
