@@ -96,7 +96,8 @@ void hub()
                             List<float> listaDeNumerosSomar = listas2();
                             somas(listaDeNumerosSomar);
                             subtracao(listaDeNumerosSomar);
-                            hubContas();
+                            multiplicacao(listaDeNumerosSomar);
+                            hubContas(listaDeNumerosSomar);
                             break;
                         case ConsoleKey.Backspace:
                             Console.WriteLine("Retornando ao Hub;\nAguarde...");
@@ -225,118 +226,260 @@ List<float> listas2()
         .ToList();
     Console.WriteLine("Você digitou os seguintes números: "+string.Join(" ",dados)); 
         Thread.Sleep(2000);
-        hubContas();
+        hubContas(dados);
         
 
     return dados;
 }
 
-void hubContas()
+void hubContas(List<float> numerosAtv2)
 {
     Console.WriteLine("Qual operação matemática deseja realizar?;");
     Console.WriteLine("\nPara Soma pressione 1;");
     Console.WriteLine("Para Subtração pressione 2;");
     Console.WriteLine("Para Multiplicação pressione 3;");
     Console.WriteLine("Para Divisão pressione 4;");
-    Console.WriteLine("Para Sair pressione -1;\n");
+    Console.WriteLine("Para Sair pressione Q;\n");
+
+    switch (Console.ReadKey(intercept: true).Key)
+    {
+        case ConsoleKey.D1:
+            somas(numerosAtv2);
+            break;
+        case ConsoleKey.D2:
+            subtracao(numerosAtv2);
+            break;
+        case ConsoleKey.D3:
+            multiplicacao(numerosAtv2);
+            break;
+        case ConsoleKey.D4:
+            break;
+        case ConsoleKey.Q:
+            (string linkedin, string gitHub) = LNKGTH();
+            Console.WriteLine("Encerrando...");
+            Console.WriteLine($"Linkedin: {linkedin}\nGitHub: {gitHub}");
+            break;
+        default:
+            Console.WriteLine("Opção inválida, tente novamente!");
+            hubContas(numerosAtv2);
+            break;
+    }
 }
 void somas(List<float> numerosAtv2)
 {
-
- ConsoleKeyInfo entrada1Atv2 = Console.ReadKey(intercept: true);
-
-    switch (entrada1Atv2.Key)
+    Console.WriteLine("Opção desejada: Somar\n");
+    Thread.Sleep(2000);
+    Console.Write("Para prosseguir pressione ENTER;\n" +
+                  "Para retornar ao Hub de equações pressione BACKSPACE;\n");
+    
+    switch (Console.ReadKey(intercept: true).Key)
     {
-        case ConsoleKey.D1:
-            Console.WriteLine("Opção desejada: Somar\n");
-            Thread.Sleep(2000);
-            Console.Write("Para prosseguir pressione ENTER;\n" +
-                          "Para retornar pressione ao Hub de equações pressione BACKSPACE;\n");
+        case ConsoleKey.Enter:
+                    
+            Console.Clear();
+            float somas2 = (numerosAtv2).Sum();
+            Console.WriteLine($"O resultado da operação escolhida é: {somas2}\n");
+            Thread.Sleep(5000);
+            Console.Clear();
+            Console.WriteLine("Para retornar ao Hub de equações pressione ENTER;\n" +
+                                      "Para retornar ao Hub Principal pressione BACKSPACE;\n" +
+                                      "Para encerrar pressione Q;\n");
             switch (Console.ReadKey(intercept: true).Key)
             {
                 case ConsoleKey.Enter:
-                    
-                    Console.Clear();
-                    float somas = (numerosAtv2).Sum();
-                    Console.WriteLine($"O resultado da operação escolhida é: {somas}\n");
-                    Thread.Sleep(5000);
-                    Console.Clear();
-                    Console.WriteLine("Para retornar ao Hub de equações pressione ENTER;\n" +
-                                      "Para retornar ao Hub Principal pressione BACKSPACE;\n" +
-                                      "Para encerrar pressione Q;\n");
-                    switch (Console.ReadKey(intercept: true).Key)
-                    {
-                        case ConsoleKey.Enter:
-                            Console.Write("Retornando ao Hub de equações;\nAguarde...\n");
-                            Thread.Sleep(2000);
-                            Console.Clear();
-                            hubContas();
-                            break;
-                        
-                        case ConsoleKey.Backspace:
-                            Console.WriteLine("Retornando ao Hub Principal;\nAguarde...");
-                            Thread.Sleep(2000);
-                            Console.Clear();
-                            hub();
-                            break;
-                        case ConsoleKey.Q:
-                            (string linkedin, string gitHub) = LNKGTH();
-                            Console.WriteLine("Encerrando o programa;\nAguarde...");
-                            Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
-                            Console.WriteLine($"{linkedin}");
-                            Console.WriteLine($"{gitHub}");
-                            Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
-                            Console.ReadKey(intercept: true);
-                            break;
-                    }
-                    break;
-                
-                case ConsoleKey.Backspace:  
-                    Console.WriteLine("Retornando ao Hub de equações;\nAguarde...");
+                    Console.Write("Retornando ao Hub de equações;\nAguarde...\n");
                     Thread.Sleep(2000);
                     Console.Clear();
-                    hubContas();
+                    hubContas(numerosAtv2);
+                    break;
+                        
+                case ConsoleKey.Backspace:
+                    Console.WriteLine("Retornando ao Hub Principal;\nAguarde...");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    hub();
+                    break;
+                        
+                case ConsoleKey.Q:
+                    (string linkedin, string gitHub) = LNKGTH();
+                    Console.WriteLine("Encerrando o programa;\nAguarde...");
+                    Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
+                    Console.WriteLine($"{linkedin}");
+                    Console.WriteLine($"{gitHub}");
+                    Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
+                    Console.ReadKey(intercept: true);
                     break;
             }
+            break;
+                
+        case ConsoleKey.Backspace:  
+            Console.WriteLine("Retornando ao Hub de equações;\nAguarde...");
+            Thread.Sleep(2000);
+            Console.Clear();
+            hubContas(numerosAtv2);
+            somas(numerosAtv2);
             break;
     }
 }
 
 void subtracao(List<float> numerosAtv2)
 {
-    ConsoleKeyInfo entrada2Atv2 = Console.ReadKey(intercept: true);
-
-    switch (entrada2Atv2.Key)
+    Console.WriteLine("Opção desejada: Subtrair\n");
+    Thread.Sleep(2000);
+    Console.Write("Para prosseguir pressione ENTER\n" +
+                  "Para retornar ao Hub de equações pressione BACKSPACE;\n");
+    switch (Console.ReadKey(intercept: true).Key)
     {
-        case ConsoleKey.D2:
-            Console.WriteLine("Opção desejada: Subtrair\n");
-            Thread.Sleep(2000);
-            Console.Write("Para prosseguir pressione ENTER\n");
+        case ConsoleKey.Enter:
+            Console.Clear();
+            float resultadoSubtracao =  numerosAtv2.Aggregate((x, y) => x - y);
+            Console.WriteLine($"O resultado da operação escolhida é: {resultadoSubtracao}\n");
+            Thread.Sleep(5000);
+            Console.Clear();
+            Console.WriteLine("Para retornar ao Hub de equações pressione ENTER;\n" +
+                                      "Para retornar ao Hub Principal pressione BACKSPACE;\n" +
+                                      "Para encerrar pressione Q;\n");
             switch (Console.ReadKey(intercept: true).Key)
             {
                 case ConsoleKey.Enter:
-                    float resultadoSubtracao =  numerosAtv2.Aggregate((x, y) => x - y);
+                    Console.Write("Retornando ao Hub de equações;\nAguarde...\n");
+                    Thread.Sleep(2000);
                     Console.Clear();
-                    Console.WriteLine($"O resultado da operação escolhida é: {resultadoSubtracao}\n");
-                    Thread.Sleep(5000);
+                    hubContas(numerosAtv2);
+                    break;
+                        
+                case ConsoleKey.Backspace:
+                    Console.WriteLine("Retornando ao Hub Principal;\nAguarde...");
+                    Thread.Sleep(2000);
                     Console.Clear();
-                    Console.WriteLine("Para retornar ao Hub de equações pressione ENTER;\n" +
-                                      "Para retornar ao Hub Principal pressione BACKSPACE;\n" +
-                                      "Para encerrar pressione Q;\n");
-                    switch (Console.ReadKey(intercept: true).Key)
-                    {
-                        case ConsoleKey.Enter:
-                            Console.ReadKey(intercept: true);
-                            break;
-                    }
+                    hub();
+                    break;
+                        
+                case ConsoleKey.Q:
+                    (string linkedin, string gitHub) = LNKGTH();
+                    Console.WriteLine("Encerrando o programa;\nAguarde...");
+                    Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
+                    Console.WriteLine($"{linkedin}");
+                    Console.WriteLine($"{gitHub}");
+                    Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
+                    Console.ReadKey(intercept: true);
                     break;
             }
-
+            break;
+                
+        case ConsoleKey.Backspace:  
+            Console.WriteLine("Retornando ao Hub de equações;\nAguarde...");
+            Thread.Sleep(2000);
+            Console.Clear();
+            hubContas(numerosAtv2);
+            subtracao(numerosAtv2);
             break;
     }
 }
- 
- 
+
+void multiplicacao(List<float> numerosAtv2)
+{
+    Console.WriteLine("Opção desejada: Multiplicar\n");
+    Thread.Sleep(2000);
+    Console.Write("Para prosseguir pressione ENTER\n" +
+                  "Para retornar ao Hub de equações  pressione BACKSPACE;\n");
+    
+    switch (Console.ReadKey(intercept: true).Key)
+    {
+        case ConsoleKey.Enter:
+                        
+            Console.Clear();
+            float resultadoMultiplicacao =  numerosAtv2.Aggregate((x, y) => x * y);
+            Console.WriteLine($"O resultado da operação escolhida é: {resultadoMultiplicacao}\n");
+            Thread.Sleep(5000);
+            Console.Clear();
+            Console.WriteLine("Para retornar ao Hub de equações pressione ENTER;\n" +
+                                      "Para retornar ao Hub Principal pressione BACKSPACE;\n" +
+                                      "Para encerrar pressione Q;\n");
+            switch (Console.ReadKey(intercept: true).Key)
+            {
+                case ConsoleKey.Enter:
+                    Console.Write("Retornando ao Hub de equações;\nAguarde...\n");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    hubContas(numerosAtv2);
+                    break;
+                        
+                case ConsoleKey.Backspace:
+                    Console.WriteLine("Retornando ao Hub Principal;\nAguarde...");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    hub();
+                    break;
+                        
+                case ConsoleKey.Q:
+                    (string linkedin, string gitHub) = LNKGTH();
+                    Console.WriteLine("Encerrando o programa;\nAguarde...");
+                    Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
+                    Console.WriteLine($"{linkedin}");
+                    Console.WriteLine($"{gitHub}");
+                    Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
+                    Console.ReadKey(intercept: true);
+                    break;
+            } break;
+                
+        case ConsoleKey.Backspace:  
+            Console.WriteLine("Retornando ao Hub de equações;\nAguarde...");
+            Thread.Sleep(2000);
+            Console.Clear();
+            hubContas(numerosAtv2);
+            multiplicacao(numerosAtv2);
+            break;
+                
+     }
+}
+
+void divisao(List<float> numerosAtv2)
+{
+    Console.WriteLine("Opção desejada: Divisão\n");
+    Thread.Sleep(2000);
+    Console.Write("Para prosseguir pressione ENTER\n" +
+                  "Para retornar ao Hub de equações  pressione BACKSPACE;\n");
+    switch (Console.ReadKey(intercept: true).Key)
+    {
+        case ConsoleKey.Enter:
+            Console.Clear();
+            float resultadoDivisao =  numerosAtv2.Aggregate((x, y) => x / y);
+            Console.WriteLine($"O resultado da operação escolhida é: {resultadoDivisao}\n");
+            Thread.Sleep(5000);
+            Console.Clear();
+            Console.WriteLine("Para retornar ao Hub de equações pressione ENTER;\n" +
+                              "Para retornar ao Hub Principal pressione BACKSPACE;\n" +
+                              "Para encerrar pressione Q;\n");
+            switch (Console.ReadKey(intercept: true).Key)
+            {
+                case ConsoleKey.Enter:
+                    Console.Write("Retornando ao Hub de equações;\nAguarde...\n");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    hubContas(numerosAtv2);
+                    break;
+                case ConsoleKey.Backspace:
+                    Console.WriteLine("Retornando ao Hub Principal;\nAguarde...");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    hub();
+                    break;
+                case ConsoleKey.Q:
+                    (string linkedin, string gitHub) = LNKGTH();
+                    Console.WriteLine("Encerrando o programa;\nAguarde...");
+                    Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
+                    Console.WriteLine($"{linkedin}");
+                    Console.WriteLine($"{gitHub}");
+                    Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
+                    Console.ReadKey(intercept: true);
+                    break;
+            }
+        break;
+
+    }
+    
+}
 
 
 
