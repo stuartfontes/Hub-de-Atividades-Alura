@@ -26,6 +26,7 @@ void hub()
 {
     Console.WriteLine("Digito 1: Acessar a atividade 'Exibindo n-ésima posição em lista'\n");
     Console.WriteLine("Digito 2: Acessar a atividade 'Calculador de números em Lista'\n");
+    Console.WriteLine("Digito 3: Acessar a atividade 'Sistema de Login e Senha'\n");
 
     switch (Console.ReadKey(intercept: true).Key)
     {
@@ -77,7 +78,8 @@ void hub()
             }  
             break;
             
-        case ConsoleKey.D2: Console.WriteLine("Você escolheu a Atividade 2;" +
+        case ConsoleKey.D2: 
+            Console.WriteLine("Você escolheu a Atividade 2;" +
                                               "\nPara mais informações pressione ENTER\n");
             switch (Console.ReadKey(intercept:true).Key)
             {
@@ -86,7 +88,7 @@ void hub()
                                       "de todos os números listados pelo usuário;\n");
                     Console.WriteLine("Pressione ENTER para prosseguir para Atividade 2;\n" +
                                       "Pressione BACKSPACE para retornar ao Hub;");
-                    switch (Console.ReadKey().Key)
+                    switch (Console.ReadKey(intercept: true).Key)
                     {
                         case ConsoleKey.Enter:
                             Console.WriteLine("Prosseguindo para Atividade 2;\nAguarde...");
@@ -113,6 +115,31 @@ void hub()
             Console.Clear();
             break;
         
+        case ConsoleKey.D3:
+            Console.WriteLine("Você escolheu a Atividade 3;" +
+                              "\nPara mais informações pressione ENTER\n");
+            switch (Console.ReadKey(intercept: true).Key)
+            {
+                case ConsoleKey.Enter:
+                    Console.WriteLine("Essa atividade simula um sistema de Login, que salva Usuários e senhas através" +
+                                      "de uma função Dictionary");
+                    Console.WriteLine("Pressione ENTER para prosseguir para Atividade 3;\n" +
+                                      "Pressione BACKSPACE para retornar ao Hub;");
+                    switch (Console.ReadKey(intercept: true).Key)
+                    {
+                        case ConsoleKey.Enter:
+                            Console.WriteLine("Prosseguindo para Atividade 3;\nAguarde...");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            menuAtividade3();
+                            break;
+                    }
+                    
+                break;
+            }
+
+            break;
+        
         default:
             Console.WriteLine("\nErro: Caracter inválido;\nPressione ENTER ou BACKSPACE;" +
                               "\nRetornando ao Hub;\nAguarde...");
@@ -133,11 +160,8 @@ hub();
 void menuAtividade1()
 {
     Console.WriteLine("Seja bem vindo a Atividade n°1, será breve e irá entregar uma lista," +
-                      " insira seus digitos e posteriormente escolha qual será o número que desja informar na tela\n");
+                      "insira seus digitos e posteriormente escolha qual será o número que desja informar na tela\n");
 }
-
-
-
 
 List<float> listas()
 {
@@ -211,7 +235,8 @@ void menuAtividade2()
 {
 
     Console.WriteLine("Seja bem vindo a Atividade n°2;\n" +
-                      "A utilização consiste em inserir números que deseja realizar operações matemática;\n");
+                      "A utilização consiste em inserir números que deseja para realizar operações matemáticas;\n" +
+                      "Como: Soma, Subtração, Multiplicação e Divisão.\n");
 }
 
 
@@ -481,5 +506,29 @@ void divisao(List<float> numerosAtv2)
     
 }
 
+// Atividade 3 - Criar um sistema de login utilizando um dicionário para armazenar nomes de usuário e senhas.
 
+void menuAtividade3()
+{
+    Console.WriteLine("Bem vindo a atividade N°3\n" +
+                      "O sistema irá criar uma função de dicionário que armazenará Login e Senha do usuário\n" +
+                      "Utilizada em partes de sistema de proteção a dados e cadastro de usuários;\n");
+}
 
+void login(Dictionary<string, string> usuarioSenha)
+{
+    Console.Write("Cadastre o nome de Usuário:\n" +
+                  "Para melhor segurança siga conforme instruções:\n" +
+                  "1.Não utilize caracteres especiais;\n" +
+                  "2.Utilize letras maiúsculas e minúsculas;\n" +
+                  "3.Minimo de 5 digitos para o Login de usuário\n");
+}
+
+void senha(Dictionary<string, string> usuarioSenha)
+{
+    Console.Write($"Cadastre sua senha:\n" +
+                  "Para melhor segurança siga conforme instruções:\n" +
+                  "1. Utilize letras maiúsculas e minúsculas;\n" +
+                  "2. Mínimo de 10 digitos para a Senha de usuário;\n" +
+                  "3. Utilize caracteres especiais(Ex:!,@,#,$,%,^,&,*,\n");
+}
