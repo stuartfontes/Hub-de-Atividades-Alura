@@ -278,6 +278,7 @@ void hubContas(List<float> numerosAtv2)
             multiplicacao(numerosAtv2);
             break;
         case ConsoleKey.D4:
+            divisao(numerosAtv2);
             break;
         case ConsoleKey.Q:
             (string linkedin, string gitHub) = LNKGTH();
@@ -519,8 +520,8 @@ void login(Dictionary<string, string> usuarioSenha)
 {
     Console.Write("Cadastre o nome de Usuário:\n" +
                   "Para melhor segurança siga conforme instruções:\n" +
-                  "1.Não utilize caracteres especiais;\n" +
-                  "2.Utilize letras maiúsculas e minúsculas;\n" +
+                  "1.Utilize letras maiúsculas e minúsculas;\n" +
+                  "2.Não utilize caracteres especiais;\n" +
                   "3.Minimo de 5 digitos para o Login de usuário\n");
 }
 
@@ -529,6 +530,6 @@ void senha(Dictionary<string, string> usuarioSenha)
     Console.Write($"Cadastre sua senha:\n" +
                   "Para melhor segurança siga conforme instruções:\n" +
                   "1. Utilize letras maiúsculas e minúsculas;\n" +
-                  "2. Mínimo de 10 digitos para a Senha de usuário;\n" +
-                  "3. Utilize caracteres especiais(Ex:!,@,#,$,%,^,&,*,\n");
+                  "2. Utilize caracteres especiais(Ex:!,@,#,$,%,^,&,*,\n" +
+                  "3. Mínimo de 10 digitos para a Senha de usuário;\n");
 }
