@@ -122,9 +122,9 @@ void hub()
             {
                 case ConsoleKey.Enter:
                     Console.WriteLine("Essa atividade simula um sistema de Login, que salva Usuários e senhas através" +
-                                      "de uma função Dictionary");
-                    Console.WriteLine("Pressione ENTER para prosseguir para Atividade 3;\n" +
-                                      "Pressione BACKSPACE para retornar ao Hub;");
+                                      "de uma função Dictionary\n");
+                    Console.WriteLine("Pressione ENTER para prosseguir para Atividade 3;" +
+                                      "\nPressione BACKSPACE para retornar ao Hub;");
                     switch (Console.ReadKey(intercept: true).Key)
                     {
                         case ConsoleKey.Enter:
@@ -333,7 +333,6 @@ void somas(List<float> numerosAtv2)
                     Console.WriteLine($"{linkedin}");
                     Console.WriteLine($"{gitHub}");
                     Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
-                    Console.ReadKey(intercept: true);
                     break;
             }
             break;
@@ -343,7 +342,6 @@ void somas(List<float> numerosAtv2)
             Thread.Sleep(2000);
             Console.Clear();
             hubContas(numerosAtv2);
-            somas(numerosAtv2);
             break;
     }
 }
@@ -388,7 +386,6 @@ void subtracao(List<float> numerosAtv2)
                     Console.WriteLine($"{linkedin}");
                     Console.WriteLine($"{gitHub}");
                     Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
-                    Console.ReadKey(intercept: true);
                     break;
             }
             break;
@@ -398,7 +395,6 @@ void subtracao(List<float> numerosAtv2)
             Thread.Sleep(2000);
             Console.Clear();
             hubContas(numerosAtv2);
-            subtracao(numerosAtv2);
             break;
     }
 }
@@ -454,7 +450,6 @@ void multiplicacao(List<float> numerosAtv2)
             Thread.Sleep(2000);
             Console.Clear();
             hubContas(numerosAtv2);
-            multiplicacao(numerosAtv2);
             break;
                 
      }
@@ -512,24 +507,193 @@ void divisao(List<float> numerosAtv2)
 void menuAtividade3()
 {
     Console.WriteLine("Bem vindo a atividade N°3\n" +
-                      "O sistema irá criar uma função de dicionário que armazenará Login e Senha do usuário\n" +
+                      "\nO sistema irá criar uma função de dicionário que armazenará Login e Senha do usuário\n" +
                       "Utilizada em partes de sistema de proteção a dados e cadastro de usuários;\n");
 }
 
-void login(Dictionary<string, string> usuarioSenha)
+Dictionary<string, string> usuarioSenha = new Dictionary<string, string>();
+
+string login()
 {
-    Console.Write("Cadastre o nome de Usuário:\n" +
-                  "Para melhor segurança siga conforme instruções:\n" +
+    Thread.Sleep(4000);
+    Console.Clear();
+    Console.WriteLine("\nCadastre o nome de Usuário:\n" +
+                  "\nPara melhor segurança siga conforme instruções:\n" +
                   "1.Utilize letras maiúsculas e minúsculas;\n" +
                   "2.Não utilize caracteres especiais;\n" +
                   "3.Minimo de 5 digitos para o Login de usuário\n");
+    Console.Write("Cadastre o usuário: ");
+    string usuario;
+    while (true)
+    {
+        usuario = Console.ReadLine();
+        bool caracterEspecial = usuario.Any(c => !char.IsLetterOrDigit(c));
+        bool tamanho = usuario.Length >= 5;
+        bool maiuscula = usuario.Any(Char.IsUpper);
+        bool minuscula = usuario.Any(Char.IsLower);
+        
+        if (!usuarioSenha.ContainsKey(usuario) && !caracterEspecial && tamanho && minuscula && maiuscula)
+        {
+            usuarioSenha.Add(usuario,"");
+            Console.Write($"\nO usuário {usuario} foi cadastrado com sucesso: \n" +
+                          $"Próxima etapa: Cadastre sua senha;\n");
+            Thread.Sleep(2000);
+            Console.Clear();
+            senha(usuarioSenha, usuario);
+            return usuario;
+        }
+    
+        else if (caracterEspecial)
+        {
+            Console.WriteLine($"O usuário {usuario} possui caracter especial;\nTente novamente.\n");
+            Thread.Sleep(2000);
+            Console.Clear();
+            return login();
+        
+        }
+        else if (!tamanho)
+        {
+            Console.WriteLine($"O usuário {usuario} não possui o mínimo de digitos necessários;" +
+                              $"Acrescente a quantidade de dígitos e tente novamente.\n");
+            Thread.Sleep(2000);
+            Console.Clear();
+            return login();
+        }
+        else if (!maiuscula)
+        {
+            Console.WriteLine($"O usuário {usuario} não possui letras maiúsculas." +
+                              $"Acrescente letras maiúsculas e tente novamente.\n");
+            Thread.Sleep(2000);
+            Console.Clear();
+            return login();
+        }
+        else if (!minuscula)
+        {
+            Console.WriteLine($"O usuário {usuario} não possui letras minúsculas." +
+                              $"Acrescente letras minúsculas e tente novamente.\n");
+            Thread.Sleep(2000);
+            Console.Clear();
+            return login();
+        }
+        else
+        {
+            Console.WriteLine($"O usuário {usuario} já está cadastrado;\nTente novamente.\n");
+            Thread.Sleep(2000);
+            Console.Clear();
+            return login();
+        }
+    }
 }
 
-void senha(Dictionary<string, string> usuarioSenha)
+void senha(Dictionary<string, string> usuarioSenha, string usuario)
+
 {
     Console.Write($"Cadastre sua senha:\n" +
-                  "Para melhor segurança siga conforme instruções:\n" +
+                  "\nPara melhor segurança siga conforme instruções:\n" +
                   "1. Utilize letras maiúsculas e minúsculas;\n" +
-                  "2. Utilize caracteres especiais(Ex:!,@,#,$,%,^,&,*,\n" +
+                  "2. Utilize caracteres especiais(Ex:!,@,#,$,%,^,&,*,)\n" +
                   "3. Mínimo de 10 digitos para a Senha de usuário;\n");
+    string senha2;
+    Console.Write("\nDigite sua senha: ");
+    while (true)
+    {
+        senha2 = Console.ReadLine();
+        bool caracterEspecial = senha2.Any(c => !char.IsLetterOrDigit(c));
+        bool tamanho = senha2.Length >= 10;
+        bool maiuscula = senha2.Any(char.IsUpper);
+        bool minuscula = senha2.Any(char.IsLower);
+        
+        if (caracterEspecial && tamanho && maiuscula && minuscula)
+        {
+            Console.WriteLine($"\nA senha {senha2} foi gerada com sucesso.\n" +
+                              $"Não entregue seu Usuário e Senha à ninguém;\n" +
+                              $"Nossa equipe em nenhuma hipótese irá pedir dados de cadastro;\n");
+            Console.WriteLine("Para visualizar seu usário e senha pressione ENTER;\n" +
+                          "Para retornar ao Hub de Atividades pressione BACKSPACE;\n" +
+                          "Para sair do programa pressione Q;\n");
+            usuarioSenha[usuario] = senha2;
+            switch (Console.ReadKey().Key)
+            {
+                case ConsoleKey.Enter:
+                    Console.WriteLine($"Seu usuário cadastrado é: {usuario}\n" +
+                                      $"Sua senha cadastrada é: {senha2}\n");
+                    Console.WriteLine("Para retornar  ao Hub de Atividades pressione ENTER;\n" +
+                                      "Para cadastrar novos usuários pressione BACKSPACE;\n");
+                    switch (Console.ReadKey().Key)
+                    {
+                        case ConsoleKey.Enter:
+                            Console.WriteLine("Retornando ao Hub de atividades;\nAguarde...\n");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            hub();
+                            break;
+                        case ConsoleKey.Backspace:
+                            Console.WriteLine("Cadastrando novos usuários.\nAguarde...\n");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            login();
+                            senha(usuarioSenha, usuario);
+                            break;
+                    }
+                    break;
+                case ConsoleKey.Backspace:
+                {
+                    Console.WriteLine("Retornando ao Hub de Atividades;\nAguarde...\n");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    MenuGeral();
+                    hub();
+                    break;
+                }
+                case ConsoleKey.Q:
+                {
+                    (string linkedin, string gitHub) = LNKGTH();
+                    Console.WriteLine("Encerrando o programa;\nAguarde...");
+                    Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
+                    Console.WriteLine($"{linkedin}");
+                    Console.WriteLine($"{gitHub}");
+                    Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
+                    Console.ReadKey(intercept: true);
+                    break;
+                }
+            }
+        }    
+        else if (!caracterEspecial)
+        {
+            Console.WriteLine($"A senha {senha2} não possui caracteres especiais.\n" +
+                              $"Inclua caracter especial e tente novamente.\n");
+            Thread.Sleep(2000);
+            Console.Clear();
+            senha(usuarioSenha, usuario);
+        }
+        else if (!tamanho)
+        {
+            Console.WriteLine($"A senha {senha2} não possui tamanho adequado.\n" +
+                              $"Inclua a quantidade necessária e tente novamente.\n");
+            Thread.Sleep(2000);
+            Console.Clear();
+            senha(usuarioSenha, usuario);
+        }
+        else if (!maiuscula)
+        {
+            Console.WriteLine($"A senha {senha2} não possui letras maiúsculas.\n" +
+                              $"Inclua letras maíusculas e tente novamente.\n");
+            Thread.Sleep(2000);
+            Console.Clear();
+            senha(usuarioSenha, usuario);
+        }
+        else if (!minuscula)
+        {
+            Console.WriteLine($"A senha {senha2} não possui letras minúsculas.Qn" +
+                              $"Inclua letras minúsculas e tente novamente.\n");
+            Thread.Sleep(2000);
+            Console.Clear();
+            senha(usuarioSenha, usuario);
+        }
+        
+    }
+    
+
 }
+
+string usuarioCadastrado = login();
