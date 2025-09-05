@@ -165,7 +165,7 @@ void menuAtividade1()
 
 List<float> listas()
 {
-    Console.Write("Insira sua lista de números, lembre de separa-las por um espaço:\n ");
+    Console.Write("Insira sua lista de números, lembre de separa-las por um espaço:\n");
     string entrada = Console.ReadLine();
     string entradaSemEspaço = entrada.Trim();
         
@@ -190,8 +190,8 @@ void posicoes(List<float> numerosAtv1)
 
     if (n > 0 && n <= numerosAtv1.Count)
     {
-        Console.WriteLine($"O número na posição {n} é: {numerosAtv1[n - 1]}");
-        Console.WriteLine("Pressione ENTER para gerar outra lista\nPressione BACKSPACE para retornar ao Hub;");
+        Console.WriteLine($"\nO número na posição {n} é: {numerosAtv1[n - 1]}");
+        Console.WriteLine("Pressione ENTER para gerar outra lista\nPressione BACKSPACE para retornar ao Hub;\n");
         switch (Console.ReadKey(intercept: true).Key)
         {
             case ConsoleKey.Enter:
@@ -206,6 +206,7 @@ void posicoes(List<float> numerosAtv1)
                 Console.WriteLine("Retornando ao Hub;\nAguarde...");
                 Thread.Sleep(2000);
                 Console.Clear();
+                MenuGeral();
                 hub();
                 break;
             default:
@@ -323,6 +324,7 @@ void somas(List<float> numerosAtv2)
                     Console.WriteLine("Retornando ao Hub Principal;\nAguarde...");
                     Thread.Sleep(2000);
                     Console.Clear();
+                    MenuGeral();
                     hub();
                     break;
                         
@@ -332,7 +334,6 @@ void somas(List<float> numerosAtv2)
                     Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
                     Console.WriteLine($"{linkedin}");
                     Console.WriteLine($"{gitHub}");
-                    Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
                     break;
             }
             break;
@@ -376,6 +377,7 @@ void subtracao(List<float> numerosAtv2)
                     Console.WriteLine("Retornando ao Hub Principal;\nAguarde...");
                     Thread.Sleep(2000);
                     Console.Clear();
+                    MenuGeral();
                     hub();
                     break;
                         
@@ -385,7 +387,6 @@ void subtracao(List<float> numerosAtv2)
                     Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
                     Console.WriteLine($"{linkedin}");
                     Console.WriteLine($"{gitHub}");
-                    Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
                     break;
             }
             break;
@@ -431,6 +432,7 @@ void multiplicacao(List<float> numerosAtv2)
                     Console.WriteLine("Retornando ao Hub Principal;\nAguarde...");
                     Thread.Sleep(2000);
                     Console.Clear();
+                    MenuGeral();
                     hub();
                     break;
                         
@@ -440,8 +442,6 @@ void multiplicacao(List<float> numerosAtv2)
                     Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
                     Console.WriteLine($"{linkedin}");
                     Console.WriteLine($"{gitHub}");
-                    Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
-                    Console.ReadKey(intercept: true);
                     break;
             } break;
                 
@@ -484,6 +484,7 @@ void divisao(List<float> numerosAtv2)
                     Console.WriteLine("Retornando ao Hub Principal;\nAguarde...");
                     Thread.Sleep(2000);
                     Console.Clear();
+                    MenuGeral();
                     hub();
                     break;
                 case ConsoleKey.Q:
@@ -492,11 +493,16 @@ void divisao(List<float> numerosAtv2)
                     Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
                     Console.WriteLine($"{linkedin}");
                     Console.WriteLine($"{gitHub}");
-                    Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
-                    Console.ReadKey(intercept: true);
-                    break;
-            }
-        break;
+                    break; 
+            } break;
+                
+        
+        case ConsoleKey.Backspace:  
+            Console.WriteLine("Retornando ao Hub de equações;\nAguarde...");
+            Thread.Sleep(2000);
+            Console.Clear();
+            hubContas(numerosAtv2);
+            break;
 
     }
     
