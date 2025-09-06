@@ -334,6 +334,7 @@ void somas(List<float> numerosAtv2)
                     Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
                     Console.WriteLine($"{linkedin}");
                     Console.WriteLine($"{gitHub}");
+                    Environment.Exit(0);
                     break;
             }
             break;
@@ -346,6 +347,7 @@ void somas(List<float> numerosAtv2)
             break;
     }
 }
+
 
 void subtracao(List<float> numerosAtv2)
 {
@@ -387,6 +389,7 @@ void subtracao(List<float> numerosAtv2)
                     Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
                     Console.WriteLine($"{linkedin}");
                     Console.WriteLine($"{gitHub}");
+                    Environment.Exit(0);
                     break;
             }
             break;
@@ -442,6 +445,7 @@ void multiplicacao(List<float> numerosAtv2)
                     Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
                     Console.WriteLine($"{linkedin}");
                     Console.WriteLine($"{gitHub}");
+                    Environment.Exit(0);
                     break;
             } break;
                 
@@ -493,6 +497,7 @@ void divisao(List<float> numerosAtv2)
                     Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
                     Console.WriteLine($"{linkedin}");
                     Console.WriteLine($"{gitHub}");
+                    Environment.Exit(0);
                     break; 
             } break;
                 
@@ -618,7 +623,7 @@ void senha(Dictionary<string, string> usuarioSenha, string usuario)
                           "Para retornar ao Hub de Atividades pressione BACKSPACE;\n" +
                           "Para sair do programa pressione Q;\n");
             usuarioSenha[usuario] = senha2;
-            switch (Console.ReadKey().Key)
+            switch (Console.ReadKey(intercept: true).Key)
             {
                 case ConsoleKey.Enter:
                     Console.WriteLine($"Seu usuário cadastrado é: {usuario}\n" +
@@ -658,8 +663,7 @@ void senha(Dictionary<string, string> usuarioSenha, string usuario)
                     Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
                     Console.WriteLine($"{linkedin}");
                     Console.WriteLine($"{gitHub}");
-                    Console.WriteLine("Pressione qualquer tecla para encerrar o Programa;\n");
-                    Console.ReadKey(intercept: true);
+                    Environment.Exit(0);
                     break;
                 }
             }
