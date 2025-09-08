@@ -619,7 +619,8 @@ void senha(Dictionary<string, string> usuarioSenha, string usuario)
             Console.WriteLine($"\nA senha {senha2} foi gerada com sucesso.\n" +
                               $"Não entregue seu Usuário e Senha à ninguém;\n" +
                               $"Nossa equipe em nenhuma hipótese irá pedir dados de cadastro;\n");
-            Console.WriteLine("Para visualizar seu usário e senha pressione ENTER;\n" +
+            Console.WriteLine("Para visualizar seu último usuário e senha pressione ENTER;\n" +
+                              "Para visualizar todos os usuários e senhas cadastrados pressione Z;\n" +
                           "Para retornar ao Hub de Atividades pressione BACKSPACE;\n" +
                           "Para sair do programa pressione Q;\n");
             usuarioSenha[usuario] = senha2;
@@ -647,6 +648,32 @@ void senha(Dictionary<string, string> usuarioSenha, string usuario)
                             break;
                     }
                     break;
+
+                case ConsoleKey.Z:
+                {
+                    void todosOsCadastros(Dictionary<string, string> usuarios)
+                    {
+                        Console.Clear();
+                        Thread.Sleep(2000);
+                        if (usuarios.Count == 0)
+                        {
+                            Console.WriteLine("Não há nenhum usuário cadastrado;\nTente novamente e insira novos usuários;\n");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                        }
+                        else
+                        {
+                            foreach (var cadastros in usuarios)
+                            {
+                                Console.WriteLine("Identificando todos os usuários cadastrados;\nAguarde...\n");
+                                Console.WriteLine($"Usuário:{cadastros.Key}: {cadastros.Value}");
+                                Thread.Sleep(5000);
+                                Console.Clear();
+                            }
+                        }
+                    }
+                    break;
+                }
                 case ConsoleKey.Backspace:
                 {
                     Console.WriteLine("Retornando ao Hub de Atividades;\nAguarde...\n");
@@ -702,8 +729,28 @@ void senha(Dictionary<string, string> usuarioSenha, string usuario)
         }
         
     }
-    
-
 }
 
 string usuarioCadastrado = login();
+
+void todosOsCadastros(Dictionary<string, string> usuarios)
+{
+    Console.Clear();
+    Thread.Sleep(2000);
+    if (usuarios.Count == 0)
+    {
+        Console.WriteLine("Não há nenhum usuário cadastrado;\nTente novamente e insira novos usuários;\n");
+        Thread.Sleep(2000);
+        Console.Clear();
+    }
+    else
+    {
+        foreach (var cadastros in usuarios)
+        {
+            Console.WriteLine("Identificando todos os usuários cadastrados;\nAguarde...\n");
+            Console.WriteLine($"Usuário:{cadastros.Key}: {cadastros.Value}");
+            Thread.Sleep(5000);
+            Console.Clear();
+        }
+    }
+}
