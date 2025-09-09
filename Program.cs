@@ -27,6 +27,7 @@ void hub()
     Console.WriteLine("Digito 1: Acessar a atividade 'Exibindo n-ésima posição em lista'\n");
     Console.WriteLine("Digito 2: Acessar a atividade 'Calculador de números em Lista'\n");
     Console.WriteLine("Digito 3: Acessar a atividade 'Sistema de Login e Senha'\n");
+    Console.WriteLine("Digito 4: Acessar projeto geral 'Curso C# - Alura'\n");
 
     switch (Console.ReadKey(intercept: true).Key)
     {
@@ -132,10 +133,34 @@ void hub()
                             Thread.Sleep(2000);
                             Console.Clear();
                             menuAtividade3();
+                            string usuarioCadastrado = login();
                             break;
                     }
                     
                 break;
+            }
+            break;
+        
+        case ConsoleKey.D4:
+            Console.WriteLine("Você escolheo o Projeto  Geral - Curso C# - Alura;" +
+                              "\nPara mais informaçes pressione ENTER\n");
+            switch (Console.ReadKey(intercept: true).Key)
+            {
+                case ConsoleKey.Enter:
+                    Console.WriteLine("O projeto chamado StuartFy é um introdutório da linguagem, nele você Cadastra" +
+                                      "avalia e exibe a média das avaliações feitas;\n");
+                    Console.WriteLine("Pressione ENTER para prosseguir para o Projeto Geral - Curso C# - Alura;" +
+                                      "\nPressione BACKSPACE para retornar ao Hub;");
+                    switch (Console.ReadKey(intercept: true).Key)
+                    {
+                        case ConsoleKey.Enter:
+                            Console.WriteLine("Prosseguindo para o Projeto Geral;\nAguarde...");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            Exibir_menu();
+                            break;
+                    }
+                    break;       
             }
 
             break;
@@ -151,9 +176,6 @@ void hub()
     }
 }
 
-
-MenuGeral();
-hub();
 
 // Atividade 1 - Escrever  um programa que dado a entrada de dados de um número N inteiro, a partir do teclado
 // exibir a n-ésima posição de uma lista (baseado na escolha do usuário)
@@ -731,7 +753,7 @@ void senha(Dictionary<string, string> usuarioSenha, string usuario)
     }
 }
 
-string usuarioCadastrado = login();
+
 
 void todosOsCadastros(Dictionary<string, string> usuarios)
 {
@@ -754,3 +776,228 @@ void todosOsCadastros(Dictionary<string, string> usuarios)
         }
     }
 }
+
+// Projeto geral StuartFy - Curso C# Alura: É um sistema que introduz e avalia bandas, foi feito para introduzir à linguagem
+
+void menuProjetoGeral()
+{
+    Console.WriteLine("Bem vindo ao projeto Geral\n" +
+                      "\nO sistema consiste em Introduzir, avaliar e realizar a média de avaliações de cada banda\n" +
+                      "Foi feito com base no curso introdutório de C# da Alura\n");
+}
+
+string mensagemDeInicio = "\nBoas vindas ao StuartFy, um aplicativo de músicas teste baseado em aprendizados de C#.";
+
+Dictionary<string, List<int>> bandasRegistradas = new Dictionary<string, List<int>>();
+void ExibirLogo()
+{
+    Console.WriteLine(@"
+░██████╗████████╗██╗░░░██╗░█████╗░██████╗░████████╗███████╗██╗░░░██╗
+██╔════╝╚══██╔══╝██║░░░██║██╔══██╗██╔══██╗╚══██╔══╝██╔════╝╚██╗░██╔╝
+╚█████╗░░░░██║░░░██║░░░██║███████║██████╔╝░░░██║░░░█████╗░░░╚████╔╝░
+░╚═══██╗░░░██║░░░██║░░░██║██╔══██║██╔══██╗░░░██║░░░██╔══╝░░░░╚██╔╝░░
+██████╔╝░░░██║░░░╚██████╔╝██║░░██║██║░░██║░░░██║░░░██║░░░░░░░░██║░░░
+╚═════╝░░░░╚═╝░░░░╚═════╝░╚═╝░░╚═╝╚═╝░░╚═╝░░░╚═╝░░░╚═╝░░░░░░░░╚═╝░░░");
+    Console.WriteLine(mensagemDeInicio);
+}
+
+void Exibir_menu()
+{
+    ExibirLogo();
+    Console.WriteLine("\nDigite: 1 para registrar uma banda;");
+    Console.WriteLine("Digite: 2 para mostrar todas as bandas;");
+    Console.WriteLine("Digite: 3 para avaliar uma banda;");
+    Console.WriteLine("Digite: 4 para exibir a média de avaliações de uma banda;");
+    Console.WriteLine("Digite: -1 para sair;");
+
+    Console.Write("\nDigite a sua opção: ");
+    string opcaoEscolhida = Console.ReadLine()!;
+    int opcaoEscolhida2 = int.Parse(opcaoEscolhida);
+    
+    switch (opcaoEscolhida2)
+    {
+        case 1: RegistrarBanda();
+            break;
+        case 2: mostrarBandasRegistradas();
+            break;
+        case 3: avaliarUmaBanda();
+            break;
+        case 4: mediaDeBandas();
+            break;
+        case -1:Console.WriteLine("Para encerrar todo o Programa pressione BACKSPACE;\n" +
+                                  "Para retornar ao Hub geral pressione ENTER;");
+            Console.ReadKey();
+            switch (Console.ReadKey().Key)
+            {
+                case ConsoleKey.Backspace:
+                    (string linkedin, string gitHub) = LNKGTH();
+                    Console.WriteLine("Encerrando o programa;\nAguarde...");
+                    Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
+                    Console.WriteLine($"{linkedin}");
+                    Console.WriteLine($"{gitHub}");
+                    Environment.Exit(0);
+                    break;
+                
+                case ConsoleKey.Enter:
+                    Console.WriteLine("Retornando ao Hub Geral;\nAguarde...\n");
+                    Thread.Sleep(2000);
+                    Console.Clear();
+                    hub();
+                    break;
+                    
+            }
+
+            break;
+        default: Console.WriteLine("Error 1: Opção inválida");
+            break;
+    
+    }
+}
+
+    void RegistrarBanda()
+    {
+        Console.Clear();
+        ExibirTituloDaOpcao("Registro das Bandas");
+        Console.Write("Digite o nome da banda que deseja registrar: ");
+        string nomeDaBanda = Console.ReadLine()!;
+        Console.WriteLine($"A banda {nomeDaBanda} foi registrada com sucesso" +
+                          $"\nRetornando ao menu;" +
+                          $"\nAguarde...");
+        bandasRegistradas.Add(nomeDaBanda, new List<int>());
+        Thread.Sleep(2000);
+        Console.Clear();
+        Exibir_menu();
+    }
+
+    void mostrarBandasRegistradas()
+    {
+        Console.Clear();
+        ExibirTituloDaOpcao("Exibindo as bandas registradas");
+  
+        Console.WriteLine("\nAs bandas registradas são\n");
+        foreach (string banda in bandasRegistradas.Keys)
+        {
+            Console.WriteLine($"{banda}\n");
+        }
+        Thread.Sleep(2000);
+        Console.WriteLine("Pressione uma tecla para retornar ao Menu: ");
+        Console.ReadKey();
+        Console.Clear();
+        Exibir_menu();
+
+    }
+
+    void ExibirTituloDaOpcao(string titulo)
+    {
+        int quantidadeDeLetras = titulo.Length;
+        string asteriscos = string.Empty.PadLeft(quantidadeDeLetras, '*');
+        Console.Write(asteriscos + "\n");
+        Console.Write(titulo + "\n");
+        Console.Write(asteriscos + "\n");
+    }
+
+    void avaliarUmaBanda()
+    {
+
+        Console.Clear();
+        ExibirTituloDaOpcao("Avaliar bandas registradas");
+        Console.Write("Digite o nome da banda que deseja avaliar: ");
+        string nomeDaBanda = Console.ReadLine()!;
+        Console.WriteLine($"A banda {nomeDaBanda} foi selecionada com sucesso;");
+        Console.WriteLine("Iniciando avaliação da banda;\n");
+        Thread.Sleep(2000);
+        if (bandasRegistradas.ContainsKey(nomeDaBanda))
+        {
+            Console.Write($"Qual a nota deseja atribuir a banda {nomeDaBanda}: ");
+            int nota = int.Parse(Console.ReadLine()!);
+            bandasRegistradas[nomeDaBanda].Add(nota);
+            Console.Write($"Registrando nota {nota};\nAguarde...\n");
+            Thread.Sleep(2000);
+            Console.Write($"A nota {nota} foi registrada para a banda {nomeDaBanda}");
+            Thread.Sleep(5000);
+            Console.Clear();
+            Exibir_menu();
+        }
+        else
+        {
+            Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada:");
+            Console.WriteLine("Digite uma tecla para voltar ao menu principal;");
+            Console.ReadKey();
+            Console.Clear();
+            Exibir_menu();
+        }
+    }
+
+    void mediaDeBandas()
+    {
+    Console.Clear();
+    ExibirTituloDaOpcao("Media de bandas registradas");
+    Console.Write("\nDigite o nome da banda que deseja visualizar a média de avaliações: ");
+    string nomeDaBanda = Console.ReadLine()!;
+    if (bandasRegistradas.ContainsKey(nomeDaBanda))
+    {
+        List<int> notas = bandasRegistradas[nomeDaBanda];
+        Console.WriteLine($"A banda {nomeDaBanda} foi escolhida com sucesso;\n");
+        Thread.Sleep(2000);
+        Console.WriteLine($"Canculando a média de avaliações da banda {nomeDaBanda};\nAguarde...\n");
+        Thread.Sleep(2000);
+        Console.Clear();
+        Console.Write($"A média de notas da banda {nomeDaBanda}: é {notas.Average()}");
+        Console.WriteLine("Pressione ENTER para retornar ao Hub geral;\n" +
+                          "Pressione BACKSPACE para retornar ao Hub do Projeto;\n" +
+                          "Pressione Q para encerrar o programa;\n");
+        Console.ReadKey();
+        switch (Console.ReadKey().Key)
+        {
+            case ConsoleKey.Enter:
+                Console.WriteLine("Retornando ao Hub Geral;\nAguarde...\n");
+                Thread.Sleep(2000);
+                Console.Clear();
+                hub();
+                break;
+            
+            case ConsoleKey.Backspace:
+                Console.WriteLine("Retornando ao Hub do Projeto;\nAguarde...\n");
+                Thread.Sleep(2000);
+                Console.Clear();
+                Exibir_menu();
+                break;
+            
+            case ConsoleKey.Q:
+                (string linkedin, string gitHub) = LNKGTH();
+                Console.WriteLine("Encerrando o programa;\nAguarde...");
+                Console.WriteLine("Agradeço a utilização, para feedbacks e/ou sugestoes acesse;\n");
+                Console.WriteLine($"{linkedin}");
+                Console.WriteLine($"{gitHub}");
+                Environment.Exit(0);
+                break; 
+        }
+    }
+    else
+    {
+        Console.WriteLine($"\nA banda {nomeDaBanda} não foi encontrada:");
+        Console.WriteLine("Pressione ENTER para retornar ao Hub do projeto;\n" +
+                          "Pressione BACKSPACE para retornar ao Hub Geral;\n");
+        Console.ReadKey();
+        switch (Console.ReadKey().Key)
+        {
+            case ConsoleKey.Enter:
+                Console.WriteLine("Retornando ao Hub do Projeto;\n" +
+                                  "Aguarde...\n");
+                Thread.Sleep(2000);
+                Console.Clear();
+                Exibir_menu();
+                break;
+            case ConsoleKey.Backspace:
+                Console.WriteLine("Retornando ao Hub Geral;\n" +
+                                  "Aguarde...\n");
+                Thread.Sleep(2000);
+                Console.Clear();
+                hub();
+                break;
+        }
+    }
+    }
+    
+    MenuGeral();
+    hub();
