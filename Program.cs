@@ -1,4 +1,7 @@
 ﻿
+
+using testes;
+
 (string linkedin, string gitHub) LNKGTH()
 
 {
@@ -6,29 +9,50 @@
     string gitHub = $"https://github.com/stuartfontes";
     return (linkedin, gitHub);
 }
-void MenuGeral(){
-Console.WriteLine(@"
-█░█ █░█ █▄▄   █▀▄ █▀▀   ▄▀█ ▀█▀ █ █░█ █ █▀▄ ▄▀█ █▀▄ █▀▀ █▀
-█▀█ █▄█ █▄█   █▄▀ ██▄   █▀█ ░█░ █ ▀▄▀ █ █▄▀ █▀█ █▄▀ ██▄ ▄█");
 
-Console.WriteLine("\nEsse é o menu geral de atividades da Alura\n" +
+void MenuGeral(){
+    Console.WriteLine(@"
+    █░█ █░█ █▄▄   █▀▄ █▀▀   ▄▀█ ▀█▀ █ █░█ █ █▀▄ ▄▀█ █▀▄ █▀▀ █▀
+    █▀█ █▄█ █▄█   █▄▀ ██▄   █▀█ ░█░ █ ▀▄▀ █ █▄▀ █▀█ █▄▀ ██▄ ▄█");
+
+    Console.WriteLine("\nEsse é o menu geral de atividades da Alura\n" +
                   "Foram realizadas por mim e transformadas em um Hub para melhor visualição\n" +
                   "Acesse as redes;\n");
-(string linkedin, string gitHub) = LNKGTH(); 
-    Console.WriteLine($"Linkedin: {linkedin}\n" +
-                      $"GitHub: {gitHub}\n");
-    
-    
- 
+        (string linkedin, string gitHub) = LNKGTH(); 
+            Console.WriteLine($"Linkedin: {linkedin}\n" +
+                              $"GitHub: {gitHub}\n");
+    Thread.Sleep(5000);
+    Console.Clear();
+    Console.WriteLine("Redirecionando para o Hub de Atividades;\nAguarde...\n");
+    Console.Clear();
 }
 
+void contadorTitulos(string titulo2)
+{
+    int quantidadeDeLetras1 = titulo2.Length;
+    string barras = string.Empty.PadLeft(quantidadeDeLetras1, '-');
+    Console.WriteLine(barras + "\n");
+    Console.WriteLine(titulo2 + "\n");
+    Console.WriteLine(barras + "\n");
+}
 void hub()
 {
+    
+    Console.WriteLine(@"
+    █░█ █░█ █▄▄   █▀▄ █▀▀   ▄▀█ ▀█▀ █ █░█ █ █▀▄ ▄▀█ █▀▄ █▀▀ █▀
+    █▀█ █▄█ █▄█   █▄▀ ██▄   █▀█ ░█░ █ ▀▄▀ █ █▄▀ █▀█ █▄▀ ██▄ ▄█");
+    
+    contadorTitulos("As atividades abaixo são referentes ao curso Básico de C#;");
+    
     Console.WriteLine("Digito 1: Acessar a atividade 'Exibindo n-ésima posição em lista'\n");
     Console.WriteLine("Digito 2: Acessar a atividade 'Calculador de números em Lista'\n");
     Console.WriteLine("Digito 3: Acessar a atividade 'Sistema de Login e Senha'\n");
     Console.WriteLine("Digito 4: Acessar projeto geral 'Curso C# - Alura'\n");
 
+    contadorTitulos("As atividades abaixo são referentes ao curso de Orientada a Objetos de C#;");
+
+    Console.WriteLine("Digito 5: Acessar a atividade 'Sistema de contas bancárias';\n");
+    
     switch (Console.ReadKey(intercept: true).Key)
     {
         case ConsoleKey.D1: Console.WriteLine("Você escolheu a Atividade 1;" +
@@ -38,9 +62,9 @@ void hub()
             {
                 case ConsoleKey.Enter:
                     Console.WriteLine("Essa atividade consiste em uma lista de números escolhidos pelo usuário" +
-                                      "que irá ser visualizada pós finalização e, então, escolhido uma posição" +
-                                      "de escolha do usuário para ser visualizada\n");
-                    Console.WriteLine("Pressione Enter para prosseguir para Atividade n°1;" +
+                                      " que irá ser visualizada pós finalização e, então, escolhido uma posição" +
+                                      " de escolha do usuário para ser visualizada\n");
+                    Console.WriteLine("Pressione Enter para prosseguir á Atividade n°1;" +
                                       "\nPressione BACKSPACE para retornar ao Hub;");
                     switch (Console.ReadKey(intercept:true).Key)
                     {
@@ -52,6 +76,7 @@ void hub()
                             List<float> listaDeNumeros = listas();
                             posicoes(listaDeNumeros);
                             break;
+                        
                         case ConsoleKey.Backspace:
                             Console.WriteLine("Retornando ao Hub;\nAguarde...");
                             Thread.Sleep(2000);
@@ -59,13 +84,13 @@ void hub()
                             MenuGeral();
                             hub();
                             break;
+                        
                         default:
                             Console.WriteLine("\nErro: Caracter inválido;\nPressione ENTER ou BACKSPACE;" +
                                               "\nRetornando ao Hub;\nAguarde...");
                             MenuGeral();
                             hub();
                             break;
-                            
                     }
                     Thread.Sleep(2000);
                     Console.Clear();
@@ -87,7 +112,7 @@ void hub()
                 case ConsoleKey.Enter:
                     Console.WriteLine("Essa atividade consiste na listagem, soma, subtração, multiplicação e divisão" +
                                       "de todos os números listados pelo usuário;\n");
-                    Console.WriteLine("Pressione ENTER para prosseguir para Atividade 2;\n" +
+                    Console.WriteLine("Pressione ENTER para prosseguir á Atividade 2;\n" +
                                       "Pressione BACKSPACE para retornar ao Hub;");
                     switch (Console.ReadKey(intercept: true).Key)
                     {
@@ -102,12 +127,21 @@ void hub()
                             multiplicacao(listaDeNumerosSomar);
                             hubContas(listaDeNumerosSomar);
                             break;
+                        
                         case ConsoleKey.Backspace:
                             Console.WriteLine("Retornando ao Hub;\nAguarde...");
                             Thread.Sleep(2000);
                             Console.Clear();
                             hub();
                             break;
+                        
+                        default:
+                            Console.WriteLine("\nErro: Caracter inválido;\nPressione ENTER ou BACKSPACE;" +
+                                              "\nRetornando ao Hub;\nAguarde...");
+                            MenuGeral();
+                            hub();
+                            break;
+
                     }
                     break;
             }
@@ -124,7 +158,7 @@ void hub()
                 case ConsoleKey.Enter:
                     Console.WriteLine("Essa atividade simula um sistema de Login, que salva Usuários e senhas através" +
                                       "de uma função Dictionary\n");
-                    Console.WriteLine("Pressione ENTER para prosseguir para Atividade 3;" +
+                    Console.WriteLine("Pressione ENTER para prosseguir á Atividade 3;" +
                                       "\nPressione BACKSPACE para retornar ao Hub;");
                     switch (Console.ReadKey(intercept: true).Key)
                     {
@@ -135,6 +169,20 @@ void hub()
                             menuAtividade3();
                             string usuarioCadastrado = login();
                             break;
+                        
+                        case ConsoleKey.Backspace:
+                            Console.WriteLine("Retornando ao Hub;\nAguarde...");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            hub();
+                            break;
+                        
+                        default:
+                            Console.WriteLine("\nErro: Caracter inválido;\nPressione ENTER ou BACKSPACE;" +
+                                              "\nRetornando ao Hub;\nAguarde...");
+                            MenuGeral();
+                            hub();
+                            break;
                     }
                     
                 break;
@@ -142,14 +190,14 @@ void hub()
             break;
         
         case ConsoleKey.D4:
-            Console.WriteLine("Você escolheo o Projeto  Geral - Curso C# - Alura;" +
+            Console.WriteLine("Você escolheu o Projeto  Geral - Curso C# - Alura;" +
                               "\nPara mais informaçes pressione ENTER\n");
             switch (Console.ReadKey(intercept: true).Key)
             {
                 case ConsoleKey.Enter:
                     Console.WriteLine("O projeto chamado StuartFy é um introdutório da linguagem, nele você Cadastra" +
                                       "avalia e exibe a média das avaliações feitas;\n");
-                    Console.WriteLine("Pressione ENTER para prosseguir para o Projeto Geral - Curso C# - Alura;" +
+                    Console.WriteLine("Pressione ENTER para prosseguir ao Projeto Geral - Curso C# - Alura;" +
                                       "\nPressione BACKSPACE para retornar ao Hub;");
                     switch (Console.ReadKey(intercept: true).Key)
                     {
@@ -159,10 +207,62 @@ void hub()
                             Console.Clear();
                             Exibir_menu();
                             break;
+                        
+                        case ConsoleKey.Backspace:
+                            Console.WriteLine("Retornando ao Hub;\nAguarde...");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            hub();
+                            break;
+                        
+                        default:
+                            Console.WriteLine("\nErro: Caracter inválido;\nPressione ENTER ou BACKSPACE;" +
+                                              "\nRetornando ao Hub;\nAguarde...");
+                            MenuGeral();
+                            hub();
+                            break;
+
                     }
                     break;       
             }
 
+            break;
+        case ConsoleKey.D5:
+            Console.WriteLine("Você escolheu a atividade 'Sistemas de conta Bancária'\n" +
+                              "Para mais informações pressione ENTER\n");
+            switch (Console.ReadKey(intercept: true).Key)
+            {
+                case ConsoleKey.Enter:
+                    Console.WriteLine("A atividade simula um sistema bancário que oferece Nome, Saldo, Senha," +
+                                      " se há dividas no titular e se possui cartões de créditos Ativos/Inativos" +
+                                      " mediante senha.\n");
+                    Console.WriteLine("Pressione ENTER para prosseguir á atividade 5;" +
+                                      "\nPressione BACKSPACE para retornar ao Hub;");
+                    switch (Console.ReadKey(intercept: true).Key)
+                    {
+                        case ConsoleKey.Enter:
+                            Console.WriteLine("Prosseguindo para a Atividade 5;\nAguarde...");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            menuAtividade5();
+                            break;
+                        
+                        case ConsoleKey.Backspace:
+                            Console.WriteLine("Retornando ao Hub;\nAguarde...");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            hub();
+                            break;
+                        
+                        default:
+                            Console.WriteLine("\nErro: Caracter inválido;\nPressione ENTER ou BACKSPACE;" +
+                                              "\nRetornando ao Hub;\nAguarde...");
+                            MenuGeral();
+                            hub();
+                            break;
+                    }
+                    break;
+            }
             break;
         
         default:
@@ -176,13 +276,12 @@ void hub()
     }
 }
 
-
 // Atividade 1 - Escrever  um programa que dado a entrada de dados de um número N inteiro, a partir do teclado
 // exibir a n-ésima posição de uma lista (baseado na escolha do usuário)
 void menuAtividade1()
 {
-    Console.WriteLine("Seja bem vindo a Atividade n°1, será breve e irá entregar uma lista," +
-                      "insira seus digitos e posteriormente escolha qual será o número que desja informar na tela\n");
+    contadorTitulos("Seja bem vindo a Atividade n°1, será breve e irá entregar uma lista," +
+                      "insira seus digitos e posteriormente escolha qual será o número que desja informar na tela");
 }
 
 List<float> listas()
@@ -257,9 +356,9 @@ void posicoes(List<float> numerosAtv1)
 void menuAtividade2()
 {
 
-    Console.WriteLine("Seja bem vindo a Atividade n°2;\n" +
+    contadorTitulos("Seja bem vindo a Atividade n°2;\n" +
                       "A utilização consiste em inserir números que deseja para realizar operações matemáticas;\n" +
-                      "Como: Soma, Subtração, Multiplicação e Divisão.\n");
+                      "Como: Soma, Subtração, Multiplicação e Divisão.");
 }
 
 
@@ -539,8 +638,9 @@ void divisao(List<float> numerosAtv2)
 
 void menuAtividade3()
 {
-    Console.WriteLine("Bem vindo a atividade N°3\n" +
+    contadorTitulos("Bem vindo a atividade N°3\n" +
                       "\nO sistema irá criar uma função de dicionário que armazenará Login e Senha do usuário\n" +
+                      "Sendo salvas em um banco de dados utilizando MySql\n" +
                       "Utilizada em partes de sistema de proteção a dados e cadastro de usuários;\n");
 }
 
@@ -550,12 +650,12 @@ string login()
 {
     Thread.Sleep(4000);
     Console.Clear();
-    Console.WriteLine("\nCadastre o nome de Usuário:\n" +
-                  "\nPara melhor segurança siga conforme instruções:\n" +
+    contadorTitulos("Cadastro do Usuário:");
+    Console.WriteLine("Para melhor segurança siga conforme instruções:\n" +
                   "1.Utilize letras maiúsculas e minúsculas;\n" +
                   "2.Não utilize caracteres especiais;\n" +
                   "3.Minimo de 5 digitos para o Login de usuário\n");
-    Console.Write("Cadastre o usuário: ");
+    Console.WriteLine("Cadastre o usuário: ");
     string usuario;
     while (true)
     {
@@ -753,8 +853,6 @@ void senha(Dictionary<string, string> usuarioSenha, string usuario)
     }
 }
 
-
-
 void todosOsCadastros(Dictionary<string, string> usuarios)
 {
     Console.Clear();
@@ -781,7 +879,7 @@ void todosOsCadastros(Dictionary<string, string> usuarios)
 
 void menuProjetoGeral()
 {
-    Console.WriteLine("Bem vindo ao projeto Geral\n" +
+    contadorTitulos("Bem vindo ao projeto Geral\n" +
                       "\nO sistema consiste em Introduzir, avaliar e realizar a média de avaliações de cada banda\n" +
                       "Foi feito com base no curso introdutório de C# da Alura\n");
 }
@@ -998,6 +1096,25 @@ void Exibir_menu()
         }
     }
     }
+// Atividade N°5 - Consiste em um sistema que emula contas bancárias, entregando informações a cerca da conta
+// Como saldo, Nome, se há dividas registradas, se há cartões de crédito e afins
+
+void menuAtividade5()
+{
+    contadorTitulos("I N A T I V O - Aguardando mais conhecimentos na área de POO & MySQL");
+    contadorTitulos("Bem vindo a atividade N°5\n" +
+                      "\nO sistema irá criar uma conta bancária via Criação de Classes públicas que armazenará" +
+                      " informações sobre uma conta bancária e fornece-las ao usuário que solicitar, mediante senha"+
+                      " que é gerada aleatoriamente pelo próprio sistema.\n");
+}
+
+void geralAtv5()
+{
+    infobanco infobanco1 = new infobanco();
+    infobanco1.usuario = "MStuartGOD";
+    Console.WriteLine($"O usuário da conta é: {infobanco1.usuario}");
     
-    MenuGeral();
-    hub();
+}
+
+MenuGeral(); 
+hub();
