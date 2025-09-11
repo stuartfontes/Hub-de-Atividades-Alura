@@ -52,6 +52,7 @@ void hub()
     contadorTitulos("As atividades abaixo são referentes ao curso de Orientada a Objetos de C#;");
 
     Console.WriteLine("Digito 5: Acessar a atividade 'Sistema de contas bancárias';\n");
+    Console.WriteLine("Digito 6: Acessar a atividade 'Sistema de Restaurantes';\n");
     
     switch (Console.ReadKey(intercept: true).Key)
     {
@@ -262,9 +263,48 @@ void hub()
                             break;
                     }
                     break;
+                
             }
             break;
         
+        case ConsoleKey.D6:
+            Console.WriteLine("Você escolheu a atividade 'Sistemas de Restaurantes'\n" +
+                              "Para mais informações pressione ENTER\n");
+            switch (Console.ReadKey(intercept: true).Key)
+            {
+                case ConsoleKey.Enter:
+                    Console.WriteLine("A atividae consiste em um sistema de restaurantes feito com Classes como:\n" +
+                                      "Restaurante, Mesa, Pedido e Cardapio, onde a classe Restaurante armazena" +
+                                      " mesas que podem ser reservadas e um cardapio com itens e valores;\n");
+                    Console.WriteLine("Pressione ENTER para retornar ao Hub;\n" +
+                                      "Pressione BACKSPACE para retornar ao Hub;");
+                    switch (Console.ReadKey(intercept: true).Key)
+                    {
+                        case ConsoleKey.Enter:
+                            Console.WriteLine("Prosseguindo para a atividade 6;\nAguarde...");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            menuAtividade6();
+                            break;
+                        
+                        case ConsoleKey.Backspace:
+                            Console.WriteLine("Retornando ao Hub;\nAguarde...");
+                            Thread.Sleep(2000);
+                            Console.Clear();
+                            hub();
+                            break;
+                        
+                        default:
+                            Console.WriteLine("\nErro: Caracter inválido;\nPressione ENTER ou BACKSPACE;" +
+                                                 "\nRetornando ao Hub;\nAguarde...");
+                            MenuGeral();
+                            hub();
+                            break;
+                    }
+                    break;   
+            }
+            break;
+            
         default:
             Console.WriteLine("\nErro: Caracter inválido;\nPressione ENTER ou BACKSPACE;" +
                               "\nRetornando ao Hub;\nAguarde...");
@@ -1115,6 +1155,18 @@ void geralAtv5()
     Console.WriteLine($"O usuário da conta é: {infobanco1.usuario}");
     
 }
+
+// Atividade N°6 - Um sistema para restaurantes com classes que exiba Mesa, Pedido e Cardapio (Com nomes e produtos)
+// A Classe Restaurantes deve ter mesas que podem ser reservadas e um cardápio de itens que podem ser pedidos
+
+void menuAtividade6()
+{
+    contadorTitulos("Seja Bem vindo a atividade N° 6, ela consiste em um sistema de restaurantes que armazenará Classes" +
+                      " fornecendo Mesas, onde permitirá que pedidos sejam feitos e mesas sejam reservadas, distribuindo também" +
+                      " um cardápio funcional com itens e valores;");
+}
+
+
 
 MenuGeral(); 
 hub();
